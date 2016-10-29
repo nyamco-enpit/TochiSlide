@@ -11,8 +11,8 @@ deploy:
   on:
     repo: nyamco-enpit/TochiSlide
 addos:
-	postgresql:"9.3"
+	postgresql: "9.3"
 before_script:
- -psql -c'create database travis_ci_test;' -U postgres
- -cp config/database.yml.travis config/database.yml
- -bin/rake db:migrate RAILS_ENV=test
+ - psql -c'create database travis_ci_test;' -U postgres
+ - cp config/database.yml.travis config/database.yml
+ - bin/rake db:migrate RAILS_ENV=test
