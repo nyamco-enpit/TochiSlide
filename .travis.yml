@@ -1,0 +1,18 @@
+language: ruby
+rvm:
+- 2.2.5
+- jruby-19mode
+- rbx-2
+deploy:
+  provider: heroku
+  api_key:
+    secure: 1fyBEgJcjhBTn8lwxzgk4EDoV4WR6ePd5LNi/nJkEtVaLNn39Z68oN2vkspDZBorwWNLMdSnEMmflifAlr6aQjmXgEhMgwcnYSh+It3VWP0KOZIgard/AXgzL4FwSivBz9kyINDsE5Mo65NVvmMF/TfdNBfrPDx17A0tPpQzBD0BNdYfsO1vLEKPyAn3n6zQjCtFC09VwxOQ+oYrOss8pwfN/1nHPP8HBIGLcC2BC6ARpHdov8dHabtIOQQtOKOX0iYFhg3RhAYNoaSGwSxl7gTUB0cauwug4qqQ8NDYIUfxOnc/zf0U3Qo6DppsCTrxyOHm/uH1+AzMNCVHbWP5iV4kZ1ueH2NRL/N6RjUcE3Zcedmu+IA9E+sA8GfvyTLXMZNfXTpBPDcpPsl3ktBBl3CupUHq3G7WHf3j7APsHtzUJR0Ou15/AXpMaQBUE2yYj75I5e0nEfl91ZXd/mVQSaNB7XDuKyx6eev0GTzsbLW+Z0fTjZHGBZqsreSMqlUVBn1tiS2BFU7iH2D6mA8hquRo5Y/E2mcq9ybBAnC/OQI3cvyLAUx1r1qTc5bWT4XnRHmFcmGjr2nK/x5OIbEsNZ7ApuM8W2oTS3L5HZ2JqMnMXh8JCL6Ny1TQoQApusAyUwTvLFJjvdSlswub2qnXijyPwJbfw/Y6NtD/5TnjySk=
+  app: polar-taiga-41162
+  on:
+    repo: nyamco-enpit/TochiSlide
+addos:
+	postgresql:"9.3"
+before_script:
+ -psql -c'create database travis_ci_test;' -U postgres
+ -cp config/database.yml.travis config/database.yml
+ -bin/rake db:migrate RAILS_ENV=test
