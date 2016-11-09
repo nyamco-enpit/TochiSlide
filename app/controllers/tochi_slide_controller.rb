@@ -5,3 +5,4 @@ class TochiSlideController < ApplicationController
 	marker.lat landslide.latitude
 	marker.lng landsliede.longitude  end
 end
+end
