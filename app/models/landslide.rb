@@ -1,4 +1,4 @@
 class Landslide < ActiveRecord::Base
-	geocoded_by :address
+	geocoded_by :city
 	after_validation :geocode
 end
