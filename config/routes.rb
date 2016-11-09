@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :landslides
   get 'tochi_slide/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
