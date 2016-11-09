@@ -1,0 +1,1 @@
+json.partial! "landslides/landslide", landslide: @landslide

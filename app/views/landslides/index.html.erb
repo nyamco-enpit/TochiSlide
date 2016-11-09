@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Landslides</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Country</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>City</th>
+      <th>Description</th>
+      <th>Comment</th>
+      <th>Weather</th>
+      <th>Temp</th>
+      <th>Humidity</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @landslides.each do |landslide| %>
+      <tr>
+        <td><%= landslide.country %></td>
+        <td><%= landslide.latitude %></td>
+        <td><%= landslide.longitude %></td>
+        <td><%= landslide.city %></td>
+        <td><%= landslide.description %></td>
+        <td><%= landslide.comment %></td>
+        <td><%= landslide.weather %></td>
+        <td><%= landslide.temp %></td>
+        <td><%= landslide.humidity %></td>
+        <td><%= landslide.date %></td>
+        <td><%= link_to 'Show', landslide %></td>
+        <td><%= link_to 'Edit', edit_landslide_path(landslide) %></td>
+        <td><%= link_to 'Destroy', landslide, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Landslide', new_landslide_path %>

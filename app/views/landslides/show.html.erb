@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @landslide.country %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @landslide.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @landslide.longitude %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @landslide.city %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @landslide.description %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @landslide.comment %>
+</p>
+
+<p>
+  <strong>Weather:</strong>
+  <%= @landslide.weather %>
+</p>
+
+<p>
+  <strong>Temp:</strong>
+  <%= @landslide.temp %>
+</p>
+
+<p>
+  <strong>Humidity:</strong>
+  <%= @landslide.humidity %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @landslide.date %>
+</p>
+
+<%= link_to 'Edit', edit_landslide_path(@landslide) %> |
+<%= link_to 'Back', landslides_path %>
