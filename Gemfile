@@ -50,5 +50,7 @@ ruby '2.2.5'
 
 gem 'geocoder'
 gem 'gmaps4rails'
+
+gem 'ransack'
  
 
