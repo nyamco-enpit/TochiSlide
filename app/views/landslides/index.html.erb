@@ -4,6 +4,35 @@
 
 <h1>Listing Landslides</h1>
 
+<%# form_for の代わりに search_form_for を使うことで検索フォームを作成 %>
+<%= search_form_for @q do |f| %>
+
+
+  <%# cont 文字列が含まれる商品説明で検索（not_cont で含まれない商品説明） %>
+  <%= f.label :description_cont, "Description" %>
+  <%= f.search_field :description_cont %>
+  <br />
+
+  <%# 関連の名前で検索 Product.carrier.name %>
+  <%= f.label :comment_cont, "Comment" %>
+  <%= f.search_field :comment_cont %>
+  <br />
+
+  <%# lt で特定の数値より下で検索（gt はより上、eq は同じ、gteqやlteqなどもできる） %>
+  <%= f.label :humidity_gt, "Humidity >" %>
+  <%= f.search_field :humidity_gt %>
+  <br />
+
+  <%# or で複数の値をorで検索（and 複数の値をand条件で検索） %>
+  <%= f.label :country_or_city_cont, "Country or City" %>
+  <%= f.search_field :country_or_city_cont %>
+  <br />
+
+  <%# 検索ボタン %>
+  <%= f.submit %>
+<% end %>
+]]]]
+<hr />
 
 <table>
   <thead>
