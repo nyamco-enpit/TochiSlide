@@ -12,12 +12,13 @@
       <th>Latitude</th>
       <th>Longitude</th>
       <th>City</th>
+	      <th><%= sort_link(@q, :city, default_order: :desc) %></th>
       <th>Description</th>
       <th>Comment</th>
-      <th>Weather</th>
-      <th>Temp</th>
-      <th>Humidity</th>
-      <th>Date</th>
+	      <th><%= sort_link(@q, :weather, default_order: :desc) %></th>
+	      <th><%= sort_link(@q, :temp, default_order: :desc) %></th>
+	      <th><%= sort_link(@q, :humidity, default_order: :desc) %></th>
+	      <th><%= sort_link(@q, :date, default_order: :desc) %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
