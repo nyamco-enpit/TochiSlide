@@ -19,6 +19,11 @@
   <br />
 
   <%# lt で特定の数値より下で検索（gt はより上、eq は同じ、gteqやlteqなどもできる） %>
+  <%= f.label :temp_gt, "Temp >" %>
+  <%= f.search_field :temp_gt %>
+  <br />
+
+  <%# lt で特定の数値より下で検索（gt はより上、eq は同じ、gteqやlteqなどもできる） %>
   <%= f.label :humidity_gt, "Humidity >" %>
   <%= f.search_field :humidity_gt %>
   <br />
@@ -31,7 +36,7 @@
   <%# 検索ボタン %>
   <%= f.submit %>
 <% end %>
-]]]]
+
 <hr />
 
 <table>
