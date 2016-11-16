@@ -4,10 +4,11 @@
 
 <h1>Listing Landslides</h1>
 
+
 <table>
   <thead>
     <tr>
-      <th>Country</th>
+	      <th><%= sort_link(@q, :Country, default_order: :desc) %></th>
       <th>Latitude</th>
       <th>Longitude</th>
       <th>City</th>
