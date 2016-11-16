@@ -9,22 +9,22 @@
 
 
   <%# cont 文字列が含まれる商品説明で検索（not_cont で含まれない商品説明） %>
-  <%= f.label :description_cont, "Description    " %>
+  <%= f.label :description_cont, "Description" %>
   <%= f.search_field :description_cont %>
   <br />
 
   <%# 関連の名前で検索 Product.carrier.name %>
-  <%= f.label :comment_cont, "Comment        " %>
+  <%= f.label :comment_cont, "Comment" %>
   <%= f.search_field :comment_cont %>
   <br />
 
   <%# lt で特定の数値より下で検索（gt はより上、eq は同じ、gteqやlteqなどもできる） %>
-  <%= f.label :temp_gt, "Temp >         " %>
+  <%= f.label :temp_gt, "Temp >" %>
   <%= f.search_field :temp_gt %>
   <br />
 
   <%# lt で特定の数値より下で検索（gt はより上、eq は同じ、gteqやlteqなどもできる） %>
-  <%= f.label :humidity_gt, "Humidity >     " %>
+  <%= f.label :humidity_gt, "Humidity >" %>
   <%= f.search_field :humidity_gt %>
   <br />
 
