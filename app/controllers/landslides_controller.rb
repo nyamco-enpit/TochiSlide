@@ -5,7 +5,8 @@ class LandslidesController < ApplicationController
   # GET /landslides.json
   def index
     @landslides = Landslide.all
-
+    @q        = Landslide.search(params[:q])
+    @landslides = @q.result(distinct: true)
     @latlng = Gmaps4rails.build_markers(@landslides) do |landslide, marker|
         marker.lat landslide.latitude
         marker.lng landslide.longitude  end
