@@ -20,7 +20,7 @@ TochiSlide is better than Google Map or any other weather forecasts,
 because it provides combined information such as OpenWeaterMap and people's reports. 
 Using this App, we can avoid landslides. And also it will help us to find good places for new buildings.
 
-##Looking back our enpit
+##Looking back our enpit (History of our enpit)
 Sept. 19th
 we had a kick off meeting of grobal enpit team. In this meeting, we confirmed that we don't need to consider past grobal enpit team and there is no feedback from their experience.
 
