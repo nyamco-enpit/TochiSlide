@@ -1,16 +1,31 @@
+require 'net/http'
+require 'uri'
+require 'json'
+
 class LandslidesController < ApplicationController
   before_action :set_landslide, only: [:show, :edit, :update, :destroy]
 
   # GET /landslides
   # GET /landslides.json
   def index
-    @landslides = Landslide.all
+    #@landslides = Landslide.all
     @q        = Landslide.search(params[:q])
     @landslides = @q.result(distinct: true)
     @latlng = Gmaps4rails.build_markers(@landslides) do |landslide, marker|
         marker.lat landslide.latitude
         marker.lng landslide.longitude  end
   end
+
+   def get_weather_info(lat, lon)
+        if lat == nil or lon == nil
+		return nil
+	end
+        weatherMapApiUri = "http://api.openweathermap.org/data/2.5/weather"
+        uri = URI.parse(weatherMapApiUri + "?APPID=" + ENV["WEATHER_APPID"] + "&lat=" + lat +"&lon=" + lon)
+        json = Net::HTTP.get(uri)
+        JSON.parse(json)
+    end
+
 
   # GET /landslides/1
   # GET /landslides/1.json
@@ -28,7 +43,18 @@ class LandslidesController < ApplicationController
 
   # POST /landslides
   # POST /landslides.json
-  def create
+  def create 
+       lat = params[:landslide][:latitude]
+       lng = params[:landslide][:longitude]
+    if lat != "" and lng != ""
+       result = get_weather_info(lat, lng)
+       if result != nil
+         params[:landslide][:temp] = result['main']['temp']
+         params[:landslide][:weather] = result['weather'][0]['main']
+         params[:landslide][:humidity] = result['main']['humidity']
+       end
+    end
+    
     @landslide = Landslide.new(landslide_params)
 
     respond_to do |format|
