@@ -17,7 +17,9 @@ class LandslidesController < ApplicationController
   end
 
    def get_weather_info(lat, lon)
-        
+        if lat == nil or lon == nil
+		return nil
+	end
         weatherMapApiUri = "http://api.openweathermap.org/data/2.5/weather"
         uri = URI.parse(weatherMapApiUri + "?APPID=" + ENV["WEATHER_APPID"] + "&lat=" + lat +"&lon=" + lon)
         json = Net::HTTP.get(uri)
@@ -46,9 +48,11 @@ class LandslidesController < ApplicationController
        lng = params[:landslide][:longitude]
     if lat != "" and lng != ""
        result = get_weather_info(lat, lng)
-       params[:landslide][:temp] = result['main']['temp']
-       params[:landslide][:weather] = result['weather'][0]['main']
-       params[:landslide][:humidity] = result['main']['humidity']
+       if result != nil
+         params[:landslide][:temp] = result['main']['temp']
+         params[:landslide][:weather] = result['weather'][0]['main']
+         params[:landslide][:humidity] = result['main']['humidity']
+       end
     end
     
     @landslide = Landslide.new(landslide_params)
@@ -98,5 +102,4 @@ class LandslidesController < ApplicationController
     def landslide_params
       params.require(:landslide).permit(:country, :latitude, :longitude, :city, :description, :comment, :weather, :temp, :humidity, :date)
     end
-
 end
