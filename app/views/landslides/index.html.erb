@@ -1,7 +1,8 @@
-<h1>TochiSlide</h1>
+<script src="//maps.google.com/maps/api/js?key=<%= ENV["APPID"] %>"></script> 
+<script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+<script src='//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js' type='text/javascript'></script> <!-- only if you need custom infoboxes -->
 
-<<<<<<< HEAD
-<h1>Listing Landslides</h1>
+ <h1>Listing Landslides</h1>
 
 <%# form_for の代わりに search_form_for を使うことで検索フォームを作成 %>
 <%= search_form_for @q do |f| %>
@@ -10,75 +11,83 @@
   <%# cont 文字列が含まれる商品説明で検索（not_cont で含まれない商品説明） %>
   <%= f.label :description_cont, "Description" %>
   <%= f.search_field :description_cont %>
-  <br />
+  </br>
 
   <%# 関連の名前で検索 Product.carrier.name %>
   <%= f.label :comment_cont, "Comment" %>
   <%= f.search_field :comment_cont %>
-  <br />
+  </br>
 
   <%# lt で特定の数値より下で検索（gt はより上、eq は同じ、gteqやlteqなどもできる） %>
   <%= f.label :temp_gt, "Temp >" %>
   <%= f.search_field :temp_gt %>
-  <br />
+  </br>
 
   <%# lt で特定の数値より下で検索（gt はより上、eq は同じ、gteqやlteqなどもできる） %>
   <%= f.label :humidity_gt, "Humidity >" %>
   <%= f.search_field :humidity_gt %>
-  <br />
+  </br>
 
   <%# or で複数の値をorで検索（and 複数の値をand条件で検索） %>
   <%= f.label :country_or_city_cont, "Country or City" %>
   <%= f.search_field :country_or_city_cont %>
-  <br />
+  </br>
 
   <%# 検索ボタン %>
   <%= f.submit %>
 <% end %>
 
-<hr />
-
 <table>
   <thead>
     <tr>
-	      <th><%= sort_link(@q, :country, default_order: :desc) %></th>
+      <th><%= sort_link(@q, :country, default_order: :desc) %></th>
       <th>Latitude</th>
       <th>Longitude</th>
-	      <th><%= sort_link(@q, :city, default_order: :desc) %></th>
+      <th><%= sort_link(@q, :city, default_order: :desc) %></th>
       <th>Description</th>
       <th>Comment</th>
-	      <th><%= sort_link(@q, :weather, default_order: :desc) %></th>
-	      <th><%= sort_link(@q, :temp, default_order: :desc) %></th>
-	      <th><%= sort_link(@q, :humidity, default_order: :desc) %></th>
-	      <th><%= sort_link(@q, :date, default_order: :desc) %></th>
+      <th><%= sort_link(@q, :weather, default_order: :desc) %></th>
+      <th><%= sort_link(@q, :temp, default_order: :desc) %></th>
+      <th><%= sort_link(@q, :humidity, default_order: :desc) %></th>
+      <th><%= sort_link(@q, :date, default_order: :desc) %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
-=======
+ 
+<tbody> 
+  <% @landslides.each do |landslide| %> 
+    <tr> 
+        <td><%= landslide.country %></td> 
+        <td><%= landslide.latitude %></td> 
+        <td><%= landslide.longitude %></td> 
+        <td><%= landslide.city %></td> 
+        <td><%= landslide.description %></td> 
+        <td><%= landslide.comment %></td> 
+        <td><%= landslide.weather %></td> 
+        <td><%= landslide.temp %></td> 
+        <td><%= landslide.humidity %></td> 
+        <td><%= landslide.date %></td> 
+        <td><%= link_to 'Show', landslide %></td> 
+        <td><%= link_to 'Edit', edit_landslide_path(landslide) %></td> 
+        <td><%= link_to 'Destroy', landslide, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
+    </tr> 
+   <% end %> 
+  </tbody> 
+</table> 
 
+<br> 
 
-<h2>Elevator Pitch</h2>
->>>>>>> 78ed50319c1544e34bd41feccd794fac5079970c
+<%= link_to 'New Landslide', new_landslide_path %> 
 
-<p>TochiSlide is for Brunei people who want to avoid landslides.
-
-In this website, you can share your information about landslides. 
-
-TochiSlide is better than Google Map or any other weather forecasts,
-
-because it provides combined information such as OpenWeaterMap and people's reports. 
-
-<<<<<<< HEAD
+<div style='width: 800px;'> 
+  <div id="map" style='width: 800px; height: 400px;'></div> 
+</div> 
+ 
 <script type="text/javascript">
 handler = Gmaps.build('Google');
 handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-  markers = handler.addMarkers(<%=raw @latlng.to_json %>);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
+markers = handler.addMarkers(<%=raw @latlng.to_json %>);
+handler.bounds.extendWith(markers);
+handler.fitMapToBounds();
 });
 </script>
-=======
-Using this App, we can avoid landslides. And also it will help us to find good places for new buildings.</p><br>
-
-<%=link_to 'Register page', '/landslides', target:'_blank' %>
->>>>>>> 78ed50319c1544e34bd41feccd794fac5079970c
