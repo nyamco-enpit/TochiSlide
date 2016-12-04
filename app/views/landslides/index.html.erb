@@ -82,6 +82,10 @@
 <div style='width: 800px;'> 
   <div id="map" style='width: 800px; height: 400px;'></div> 
 </div> 
+    <table border="1" cellspacing="0">
+    	<tr><th>LAT</th><td id="show_lat"></td></tr>
+    	<tr><th>LNG</th><td id="show_lng"></td></tr>
+    </table>
  
 <script type="text/javascript">
 handler = Gmaps.build('Google');
@@ -89,5 +93,9 @@ handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
 markers = handler.addMarkers(<%=raw @latlng.to_json %>);
 handler.bounds.extendWith(markers);
 handler.fitMapToBounds();
+google.maps.event.addListener(handler.getMap(), 'click', function(event) { 
+      document.getElementById("show_lat").innerHTML = event.latLng.lat();
+      document.getElementById("show_lng").innerHTML = event.latLng.lng();
+  });
 });
 </script>
